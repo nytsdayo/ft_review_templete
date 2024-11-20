@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>42 Review Template</title>
+    <style>
+        body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-bottom: 30px;
+        }
+        #template-text {
+            width: 100%;
+            min-height: 200px;
+            margin: 20px 0;
+            padding: 10px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>42 Review Template</h1>
+    
+    <div class="container">
+        <textarea id="template-text">【MUST - 必須の修正点】
+
+【NITS - 軽微な改善点】
+
+【TIPS - 実装のアイデア】
+
+【NOTICE - 注意事項】
+
+【NOTE - 気付き・学び】
+
+【THOUGHTS - 感想】
+
+【OTHER - その他】</textarea>
+        <div>
+            <button onclick="copyTemplate()">テンプレートをコピー</button>
+            <button onclick="resetTemplate()">テンプレートをリセット</button>
+        </div>
+    </div>
+
+    <script>
+        const defaultTemplate = `【MUST - 必須の修正点】
+
+【NITS - 軽微な改善点】
+
+【TIPS - 実装のアイデア】
+
+【NOTICE - 注意事項】
+
+【NOTE - 気付き・学び】
+
+【THOUGHTS - 感想】
+
+【OTHER - その他】`;
+
+        function copyTemplate() {
+            const templateText = document.getElementById('template-text');
+            templateText.select();
+            document.execCommand('copy');
+            alert('テンプレートをコピーしました！');
+        }
+
+        function resetTemplate() {
+            const templateText = document.getElementById('template-text');
+            templateText.value = defaultTemplate;
+        }
+    </script>
+</body>
+</html>
