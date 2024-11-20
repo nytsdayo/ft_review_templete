@@ -1,2 +1,3 @@
 # ft_review_templete
-42の個人的レビュー用テンプレート
+##describe
+42Schoolにおける課題レビュー用のテンプレートです。
