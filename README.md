@@ -1,3 +1,3 @@
 # ft_review_templete
-##describe
+##　describe
 42Schoolにおける課題レビュー用のテンプレートです。
