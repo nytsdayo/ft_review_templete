@@ -9,12 +9,25 @@
             padding: 20px;
             font-family: Arial, sans-serif;
         }
-        .container {
-            margin-bottom: 30px;
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .tab {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+        }
+        .tab.active {
+            background-color: #ddd;
+            font-weight: bold;
         }
         #template-text {
             width: 100%;
-            min-height: 300px;
+            min-height: 400px;
             margin: 20px 0;
             padding: 10px;
             font-family: monospace;
@@ -30,21 +43,15 @@
 </head>
 <body>
     <h1>42 Review Template</h1>
-    
+
+    <div class="tabs">
+        <div class="tab active" onclick="switchTemplate(0)">Basic Review</div>
+        <div class="tab" onclick="switchTemplate(1)">for born2beroot</div>
+        <div class="tab" onclick="switchTemplate(2)">only comment</div>
+    </div>
+
     <div class="container">
-        <textarea id="template-text">【MUST - 必須の修正点】
-
-【NITS - 軽微な改善点】
-
-【TIPS - 実装のアイデア】
-
-【NOTICE - 注意事項】
-
-【NOTE - 気付き・学び】
-
-【THOUGHTS - 感想】
-
-【OTHER - その他】</textarea>
+        <textarea id="template-text"></textarea>
         <div>
             <button onclick="copyTemplate()">テンプレートをコピー</button>
             <button onclick="resetTemplate()">テンプレートをリセット</button>
@@ -52,19 +59,23 @@
     </div>
 
     <script>
-        const defaultTemplate = `【MUST - 必須の修正点】
+        const templates = [
+            `【MUST - 必須の修正点】\n\n【NITS - 軽微な改善点】\n\n【TIPS - 実装のアイデア】\n\n【NOTICE - 注意事項】\n\n【NOTE - 気付き・学び】\n\n【THOUGHTS - 感想】\n\n【OTHER - その他】`,
 
-【NITS - 軽微な改善点】
+            `【MUST - 必須の修正点】\n\n【NITS - 軽微な改善点】\n\n【MUST DESCRIBE - 説明が不足していた点】\n\n【KNOWREDGE TIPS - 知識の補足】\n\n【NOTICE - 注意事項】\n\n【NOTE - 気付き・学び】\n\n【THOUGHTS - 感想】\n\n【OTHER - その他】`,
 
-【TIPS - 実装のアイデア】
+            `【COMMENT - コメント】`
+        ];
 
-【NOTICE - 注意事項】
+        let currentTemplateIndex = 0;
 
-【NOTE - 気付き・学び】
-
-【THOUGHTS - 感想】
-
-【OTHER - その他】`;
+        function switchTemplate(index) {
+            currentTemplateIndex = index;
+            document.getElementById('template-text').value = templates[index];
+            document.querySelectorAll('.tab').forEach((tab, i) => {
+                tab.classList.toggle('active', i === index);
+            });
+        }
 
         function copyTemplate() {
             const templateText = document.getElementById('template-text');
@@ -74,9 +85,11 @@
         }
 
         function resetTemplate() {
-            const templateText = document.getElementById('template-text');
-            templateText.value = defaultTemplate;
+            document.getElementById('template-text').value = templates[currentTemplateIndex];
         }
+
+        // Initialize with the first template
+        switchTemplate(0);
     </script>
 </body>
 </html>
